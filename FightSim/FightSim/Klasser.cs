@@ -27,9 +27,9 @@ class Klasser
     {
         Console.WriteLine(text);
 
-        if(ignoreReadLine == true)
+        if(ignoreReadLine == false)
         {
-        Console.ReadLine();
+            Console.ReadLine();
         }
     } //Skriver ut en string
 

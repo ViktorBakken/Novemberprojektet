@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FightSim
 {
-    class Fighters
+    class Fighters //Detta blir en mall för de andra klasserna
     {
         protected string name;
         protected int maxHp = 10;

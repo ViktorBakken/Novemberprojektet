@@ -6,7 +6,8 @@ namespace FightSim
     {
         static void Main(string[] args)
         {
-            PresentFighterKlass(false);
+            PresentFighterKlass(false); // The player gets to choose a fighter 
+            PresentFighterKlass(true); // The game randomises a fighter
 
         }
         static void PresentFighterKlass(bool fiende)
@@ -16,9 +17,9 @@ namespace FightSim
                 Console.Clear();
                 Console.WriteLine("Choose a fighter klass");
 
-                Klasser.WriteLine("Fighter 1: \nHp: High\nDamage: Medium\nHitchance: Low", false);
-                Klasser.WriteLine("Fighter 2: \nHp: Medium\nDamage: Medium\nHitchance: Medium", false);
-                Klasser.WriteLine("Fighter 3: \nHp: Low\nDamage: High\nHitchance: High", false);
+                Klasser.WriteLine("\nFighter 1: \nHp: High\nDamage: Medium\nHitchance: Low", true);
+                Klasser.WriteLine("\nFighter 2: \nHp: Medium\nDamage: Medium\nHitchance: Medium", true);
+                Klasser.WriteLine("\nFighter 3: \nHp: Low\nDamage: High\nHitchance: High", true);
             }
             chooseFighter(fiende);
         }
@@ -26,7 +27,7 @@ namespace FightSim
         static string chooseFighter(bool fiende)
         {
             string choice;
-            bool failsafe = false;
+            bool failsafe = true;
 
             if (fiende == false)
             {
@@ -36,7 +37,7 @@ namespace FightSim
             {
                 choice = RandomiseChoise();
             }
-            while (failsafe == false)
+            while (failsafe == true)
             {
                 if (choice == "fighter1" || choice == "1")
                 {
