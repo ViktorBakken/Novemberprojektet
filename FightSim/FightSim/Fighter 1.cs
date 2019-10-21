@@ -4,9 +4,9 @@ using System.Text;
 
 namespace FightSim
 {
-    class Figher_1 : Fighters
+    class Fighter_1 : Fighters
     {
-        public Figher_1()
+        public Fighter_1()
         {
             hp = Klasser.RandInt(minHp, maxHp + 10);
             hitChance = Klasser.RandInt(minHitChance, maxHitChance - 5);
