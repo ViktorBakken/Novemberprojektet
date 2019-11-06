@@ -6,11 +6,46 @@ namespace FightSim
     {
         static void Main(string[] args)
         {
-            PresentFighterKlass(false); // The player gets to choose a fighter 
-            PresentFighterKlass(true); // The game randomises a fighter
+            Fighters player = PresentFighterKlass(false); // The player gets to choose a fighter 
+            Fighters enemy = PresentFighterKlass(true); // The game randomises a fighter
 
+            NameYourFighter(player);
+
+            FightMenues(player);
         }
-        static void PresentFighterKlass(bool fiende)
+        static void FightMenues(Fighters player)
+        {
+            Console.Clear();
+            Klasser.WriteLine("Name: " + player.PrintNameOrHealth(true) + "\nHp: " + player.PrintNameOrHealth(false) + "\nWhat do you want to do? \n1. Fight\n2. Check Status", true);
+            string[] answears = { "1", "2", "fight", "check staus" };
+
+            string answear = Klasser.ChoiseCorrect(answears);
+
+            Console.Clear();
+
+            if (answear == answears[0] || answear == answears[2])
+            {
+
+            }
+
+            if (answear == answears[1] || answear == answears[3])
+            {
+                player.PrintStats();
+                FightMenues(player);
+            }
+        }
+
+        static void NameYourFighter(Fighters fighter)
+        {
+            Console.Clear();
+            Klasser.WriteLine("Name your fighter!\n", true);
+
+            string newName = Console.ReadLine();
+
+            fighter.NameFighter(newName);
+        }
+
+        static Fighters PresentFighterKlass(bool fiende)
         {
             if (fiende == false)
             {
@@ -20,49 +55,43 @@ namespace FightSim
                 Klasser.WriteLine("\nFighter 1: \nHp: High\nDamage: Medium\nHitchance: Low", true);
                 Klasser.WriteLine("\nFighter 2: \nHp: Medium\nDamage: Medium\nHitchance: Medium", true);
                 Klasser.WriteLine("\nFighter 3: \nHp: Low\nDamage: High\nHitchance: High", true);
+                Klasser.Write("Choose fighter:", true);
             }
-            chooseFighter(fiende);
+
+            return chooseFighter(fiende);
         }
 
-        static string chooseFighter(bool fiende)
+        static Fighters chooseFighter(bool fiende)
         {
+            string[] answears = { "1", "2", "3", "fighter 1", "fighter 2", "fighter 3" };
             string choice;
-            bool failsafe = true;
+            Fighters fighter = new Fighters();
 
             if (fiende == false)
             {
-                choice = Console.ReadLine().Trim().ToLower();
+                choice = Klasser.ChoiseCorrect(answears);
             }
             else
             {
                 choice = RandomiseChoise();
             }
-            while (failsafe == true)
+
+            if (choice == "fighter 1" || choice == "1")
             {
-                if (choice == "fighter1" || choice == "1")
-                {
-                    Fighter_1 player = new Fighter_1();
-                    break;
-                }
-
-                if (choice == "fighter2" || choice == "2")
-                {
-                    Fighter_2 player = new Fighter_2();
-                    break;
-                }
-
-                if (choice == "fighter3" || choice == "3")
-                {
-                    Fighter_3 player = new Fighter_3();
-                    break;
-                }
-
-                choice = Console.ReadLine().Trim().ToLower();
+                fighter = new Fighter_1();
             }
 
+            if (choice == "fighter 2" || choice == "2")
+            {
+                fighter = new Fighter_2();
+            }
 
+            if (choice == "fighter 3" || choice == "3")
+            {
+                fighter = new Fighter_3();
+            }
 
-            return choice;
+            return fighter;
         }
 
         static string RandomiseChoise()
@@ -73,5 +102,11 @@ namespace FightSim
 
             return rand;
         }
+
+        static void AnitiateFight()
+        {
+
+        }
+
     }
 }

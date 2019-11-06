@@ -23,11 +23,39 @@ class Klasser
         return amount;
     }
 
+    public static string ChoiseCorrect(string[] correctAnswears)
+    {
+        string answear = "";
+        bool wrongInput = true;
+
+        while (wrongInput == true)
+        {
+            answear = Console.ReadLine().ToLower().Trim();
+
+            for (int i = 0; i < correctAnswears.Length; i++)
+            {
+                if (answear == correctAnswears[i])
+                {
+                    wrongInput = false;
+                    break;
+                }
+            }
+
+            if (wrongInput == true)
+            {
+                Klasser.WriteLine("Wrong input, Write something else", true);
+            }
+
+        }
+
+        return answear;
+    }
+
     public static void WriteLine(string text, bool ignoreReadLine)
     {
         Console.WriteLine(text);
 
-        if(ignoreReadLine == false)
+        if (ignoreReadLine == false)
         {
             Console.ReadLine();
         }
