@@ -6,6 +6,7 @@ namespace FightSim
 {
     class Fighters //Detta blir en mall för de andra klasserna
     {
+        private string[] enemyNames = { "Apollo Creed", "Rocky Balboa", "Adonis Johnson", "Life of Boris", "Cousin Anatoli", "Vadim", "Felix Kjellberg", "Marzia Kjellberg", "Call Me Carson", "HartVigen", "Hugo Wiman", "Anton Jansson", "Martin Nyberg" };
         protected string name;
         protected int maxHp = 10;
         protected int minHp = 5;
@@ -16,6 +17,10 @@ namespace FightSim
         protected int minHitChance = 1;
         protected int hitChance;
 
+        public Fighters()
+        {
+            name = Klasser.RandString(enemyNames);
+        }
         public void NameFighter(string newName)
         {
             name = newName;
@@ -38,14 +43,9 @@ namespace FightSim
 
         }
 
-
-
         public void PrintStats()
         {
-            string[] answears = { "back", "b" };
-            Console.WriteLine("Name: " + name + "\nHP: " + hp + "\nHit Chance: " + hitChance + "\nMax Damage: " + maxDamage + "\nMinDamage" + minDamage + "\n \n(write back)\n");
-
-            Klasser.ChoiseCorrect(answears);
+            Klasser.WriteLine("Name: " + name + "\nHP: " + hp + "\nHit Chance: " + hitChance + "\nMax Damage: " + maxDamage + "\nMin Damage: " + minDamage + "\n \n(press enter)\n", false);
 
             return;
         }
@@ -61,7 +61,5 @@ namespace FightSim
 
             return damage;
         }
-
-
     }
 }

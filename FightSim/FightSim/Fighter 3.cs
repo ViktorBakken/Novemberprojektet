@@ -8,7 +8,7 @@ namespace FightSim
     {
         public Fighter_3()
         {
-            hp = Klasser.RandInt(minHp, maxHp - 3);
+            hp = Klasser.RandInt(minHp - 2, maxHp - 3);
             maxDamage += 2;
             minDamage += 2;
             hitChance = Klasser.RandInt(minHitChance, maxHitChance + 5);
