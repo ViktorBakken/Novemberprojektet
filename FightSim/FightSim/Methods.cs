@@ -18,7 +18,7 @@ namespace FightSim
 
             if (answear == answears[0] || answear == answears[2])
             {
-
+                DealDamage(player, enemy);
             }
 
             if (answear == answears[1] || answear == answears[3])
@@ -35,7 +35,7 @@ namespace FightSim
 
             string newName = Console.ReadLine();
 
-            fighter.NameFighter(newName);
+            fighter.Name = newName;
         }
 
         public Fighters PresentFighterKlass(bool fiende)
@@ -96,13 +96,30 @@ namespace FightSim
             return rand;
         }
 
+        public void DealDamage(Fighters player, Fighters enemy, bool playerBool)
+        {
+            if(player.HitOrMiss() == true && playerBool == true)
+            {
+                int damage = player.Damage;
+
+                enemy.Hp -= damage;
+            }
+
+            if (true)
+            {
+
+            }
+
+
+        }
+
         public void AnitiateFight(Fighters player, Fighters enemy)
         {
             int whoWillStart;
             bool playerStartFight;
 
             Console.Clear();
-            Klasser.WriteLine("The fight will now commense! Todays fight is between " + player.PrintNameOrHealth(true) + " versus " + enemy.PrintNameOrHealth(true) + ".\n\n", true);
+            Klasser.WriteLine("The fight will now commense! Todays fight is between " + player.Name + " versus " + enemy.Name + ".\n\n", true);
 
             whoWillStart = Klasser.RandInt(0, 1);
 
@@ -124,6 +141,7 @@ namespace FightSim
             {
                 FightMenues(player, enemy);
             }
+
         }
     }
 }

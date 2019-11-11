@@ -17,13 +17,64 @@ namespace FightSim
         protected int minHitChance = 1;
         protected int hitChance;
 
+        public int Hp
+        {
+            get
+            {
+                return hp;
+            }
+
+            set
+            {
+                if (hp >= 0)
+                {
+                    hp = value;
+                }
+            }
+        }
+
+        public int Damage
+        {
+            get
+            {
+                int damage = Klasser.RandInt(minDamage, maxDamage);
+
+                return damage;
+            }
+        }
+
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+
+            set
+            {
+                name = value;
+            }
+        }
+
+        public bool HitOrMiss()
+        {
+            bool hit = false;
+            int hitValueLimiter = Klasser.RandInt(1, 50);
+            int hitValRand = Klasser.RandInt(1, 10);
+
+            int hitVal = hitValRand * hitChance;
+
+            if (hitVal > hitValueLimiter)
+            {
+                hit = true;
+            }
+
+            return hit;
+        }
+
         public Fighters()
         {
             name = Klasser.RandString(enemyNames);
-        }
-        public void NameFighter(string newName)
-        {
-            name = newName;
         }
 
         public string PrintNameOrHealth(bool Name)
@@ -48,18 +99,6 @@ namespace FightSim
             Klasser.WriteLine("Name: " + name + "\nHP: " + hp + "\nHit Chance: " + hitChance + "\nMax Damage: " + maxDamage + "\nMin Damage: " + minDamage + "\n \n(press enter)\n", false);
 
             return;
-        }
-
-        public void TakeDamage(int amount)
-        {
-            hp -= amount;
-        }
-
-        public int DealDamage()
-        {
-            int damage = Klasser.RandInt(minDamage, maxDamage);
-
-            return damage;
         }
     }
 }
