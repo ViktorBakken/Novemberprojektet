@@ -9,7 +9,9 @@ namespace FightSim
         public Fighter_1()
         {
             hp = Klasser.RandInt(minHp, maxHp + 10);
-            hitChance = Klasser.RandInt(minHitChance, maxHitChance - 5);
+            maxDamage -= 1;
+            minDamage -= 1;
+            hitChance = Klasser.RandInt(minHitChance - 1, maxHitChance - 1);
         }
     }
 }

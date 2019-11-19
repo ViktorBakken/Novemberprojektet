@@ -8,13 +8,13 @@ namespace FightSim
     {
         private string[] enemyNames = { "Apollo Creed", "Rocky Balboa", "Adonis Johnson", "Life of Boris", "Cousin Anatoli", "Vadim", "Felix Kjellberg", "Marzia Kjellberg", "Call Me Carson", "HartVigen", "Hugo Wiman", "Anton Jansson", "Martin Nyberg" };
         protected string name;
-        protected int maxHp = 10;
-        protected int minHp = 5;
+        protected int maxHp = 20;
+        protected int minHp = 15;
         protected int hp;
-        protected int maxDamage = 5;
-        protected int minDamage = 1;
+        protected int maxDamage = 6;
+        protected int minDamage = 3;
         protected int maxHitChance = 5;
-        protected int minHitChance = 1;
+        protected int minHitChance = 3;
         protected int hitChance;
         private bool defeated;
 
@@ -109,7 +109,8 @@ namespace FightSim
 
         public void PrintStats()
         {
-            Klasser.WriteLine("Name: " + name + "\nHP: " + hp + "\nHit Chance: " + hitChance + "\nMax Damage: " + maxDamage + "\nMin Damage: " + minDamage + "\n \n(press enter)\n", false);
+            Console.Clear();
+            Klasser.WriteLine("Name: " + name + "\nHP: " + hp + "\nHit Chance: " + hitChance + "\nMax Damage: " + maxDamage + "\nMin Damage: " + minDamage + "\n \n(*Enter*)\n", false);
 
             return;
         }
