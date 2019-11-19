@@ -16,6 +16,7 @@ namespace FightSim
         protected int maxHitChance = 5;
         protected int minHitChance = 1;
         protected int hitChance;
+        private bool defeated;
 
         public int Hp
         {
@@ -29,6 +30,10 @@ namespace FightSim
                 if (hp >= 0)
                 {
                     hp = value;
+                }
+                else
+                {
+                    defeated = true;
                 }
             }
         }
@@ -53,6 +58,14 @@ namespace FightSim
             set
             {
                 name = value;
+            }
+        }
+
+        public bool IsDefeated
+        {
+            get
+            {
+                return defeated;
             }
         }
 

@@ -5,6 +5,7 @@ namespace FightSim
     class Program
     {
         static Methods m = new Methods();
+        static bool restartGame = false;
         static void Main(string[] args)
         {
             Fighters player = m.PresentFighterKlass(false); // The player gets to choose a fighter 
@@ -15,6 +16,11 @@ namespace FightSim
             player.PrintStats();
             
             m.AnitiateFight(player, enemy);
+
+            if (restartGame == true)
+            {
+                Program.Main(args);
+            }
         }
         
 
