@@ -6,6 +6,8 @@ using System.Text;
 class Klasser
 {
     private static Random randGen = new Random(); // Slump generatorn
+    
+    public static bool restartGame = false;
 
     public static int IsInt(string intake)
     {

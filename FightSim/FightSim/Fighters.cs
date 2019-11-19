@@ -65,6 +65,10 @@ namespace FightSim
         {
             get
             {
+                if (hp <= 0)
+                {
+                    defeated = true;
+                }
                 return defeated;
             }
         }

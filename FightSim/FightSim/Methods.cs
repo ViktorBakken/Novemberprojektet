@@ -77,9 +77,6 @@ namespace FightSim
             return rand;
         }
 
-
-
-        //Fighting
         public void AnitiateFight(Fighters player, Fighters enemy)
         {
             int whoWillStart;
@@ -93,17 +90,20 @@ namespace FightSim
             if (whoWillStart == 0)
             {
                 playerStartFight = true;
-                Klasser.WriteLine(player.Name + " will start the fight.\n(*Enter*)", false);
+                Klasser.WriteLine(player.Name + " will start the fight.\n\n(*Enter*)", false);
             }
             else
             {
                 playerStartFight = false;
-                Klasser.WriteLine(enemy.Name + " will start the fight.\n(*Enter*)", false);
+                Klasser.WriteLine(enemy.Name + " will start the fight.\n\n(*Enter*)", false);
             }
 
             Fight(playerStartFight, player, enemy);
         }
-        
+
+
+
+        //Fighting
         public void Fight(bool playerStartFight, Fighters player, Fighters enemy)
         {
             while (player.IsDefeated == false && enemy.IsDefeated == false)
@@ -113,12 +113,23 @@ namespace FightSim
                     FightMenues(player, enemy, true);
                 }
 
-
                 FightMenues(player, enemy, false);
                 playerStartFight = true;
             }
 
+            bool playerWon = false;
 
+            if (player.IsDefeated == false)
+            {
+                playerWon = true;
+            }
+            else
+            {
+                playerWon = false;
+            }
+
+
+            End(playerWon);
         }
 
         public void FightMenues(Fighters player, Fighters enemy, bool isPlayer)
@@ -143,7 +154,8 @@ namespace FightSim
                     player.PrintStats();
                     FightMenues(player, enemy, true);
                 }
-            }else
+            }
+            else
             {
                 DealDamage(player, enemy, false);
             }
@@ -153,36 +165,63 @@ namespace FightSim
         {
             string[] attacks = { "hook", "straight", "death stare", "roundhouse kick", "DDT" };
             string[] hit = { "stomach", "knee", "shoulder", "liver", "Hand", "feet" };
+            bool playerHit = player.HitOrMiss();
+            bool enemyHit = enemy.HitOrMiss();
 
-            Thread.Sleep(100);
+            Thread.Sleep(200);
 
-            if (player.HitOrMiss() == true && playerBool == true)
+            if (playerHit == true && playerBool == true)
             {
-                Klasser.WriteLine(player.Name + " hit a " + Klasser.RandString(attacks) + " on " + enemy.Name + "'s " + Klasser.RandString(hit) + "\n(*Enter*)", false);
                 int damage = player.Damage;
+
+                Klasser.WriteLine(player.Name + " hit a " + Klasser.RandString(attacks) + " on " + enemy.Name + "'s " + Klasser.RandString(hit) + " and dealt " + damage + " damage" + "\n\n(*Enter*)", false);
 
                 enemy.Hp -= damage;
             }
 
-            if (player.HitOrMiss() == false && playerBool == true)
+            if (playerHit == false && playerBool == true)
             {
                 Klasser.WriteLine(player.Name + " missed his attack", false);
             }
 
-            if (enemy.HitOrMiss() == true && playerBool == true)
+            if (enemyHit == true && playerBool == false)
             {
-                Klasser.WriteLine(enemy.Name + " hit a " + Klasser.RandString(attacks) + " on " + player.Name + "'s " + Klasser.RandString(hit) + "\n(*Enter*)", false);
                 int damage = enemy.Damage;
+
+                Klasser.WriteLine(enemy.Name + " hit a " + Klasser.RandString(attacks) + " on " + player.Name + "'s " + Klasser.RandString(hit) + " and dealt " + damage + " damage" + "\n\n(*Enter*)", false);
 
                 player.Hp -= damage;
             }
 
-            if (enemy.HitOrMiss() == false && playerBool == true)
+            if (enemyHit == false && playerBool == false)
             {
                 Klasser.WriteLine(enemy.Name + " missed the attack", false);
             }
 
             Console.Clear();
+        }
+
+        public void End(bool playerWon)
+        {
+            if (playerWon == true)
+            {
+                Klasser.WriteLine("Better luck next time!", true);
+            }
+            else
+            {
+                Klasser.WriteLine("Perfekt round!", true);
+            }
+
+            Klasser.WriteLine("Would you like to play again? \n\n (Yes/No)", true);
+
+            string[] answears = { "yes", "no" };
+
+            string answear = Klasser.ChoiseCorrect(answears);
+
+            if (answear == "yes")
+            {
+                Klasser.restartGame = true;
+            }
         }
     }
 }
