@@ -118,7 +118,7 @@ class Klasser
         retVal = randGen.Next(num1, num2 + 1);
 
         return retVal;
-    }//Slumpar mellan två ints
+    }//Slumpar ett tal mellan två ints
 
 
     public static string RandString(string[] total)
