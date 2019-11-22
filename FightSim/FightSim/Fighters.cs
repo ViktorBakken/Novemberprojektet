@@ -57,7 +57,10 @@ namespace FightSim
 
             set
             {
-                name = value;
+                string[] wrongAnswear = { "" };
+                string newName = Klasser.ChoiseIsNot(wrongAnswear, value);
+                
+                name = newName;
             }
         }
 
@@ -76,8 +79,8 @@ namespace FightSim
         public bool HitOrMiss()
         {
             bool hit = false;
-            int hitValueLimiter = Klasser.RandInt(1, 50);
-            int hitValRand = Klasser.RandInt(1, 10);
+            int hitValueLimiter = Klasser.RandInt(10, 20);
+            int hitValRand = Klasser.RandInt(3, 7);
 
             int hitVal = hitValRand * hitChance;
 

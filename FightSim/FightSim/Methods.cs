@@ -7,7 +7,6 @@ namespace FightSim
 {
     class Methods
     {
-
         //Begining
         public void NameYourFighter(Fighters fighter)
         {
@@ -19,9 +18,9 @@ namespace FightSim
             fighter.Name = newName;
         }
 
-        public Fighters PresentFighterKlass(bool fiende)
+        public Fighters PresentFighterKlass(bool player)
         {
-            if (fiende == false)
+            if (player == false)
             {
                 Console.Clear();
                 Console.WriteLine("Choose a fighter klass");
@@ -29,19 +28,19 @@ namespace FightSim
                 Klasser.WriteLine("\nFighter 1: \nHp: High\nDamage: Medium\nHitchance: Low", true);
                 Klasser.WriteLine("\nFighter 2: \nHp: Medium\nDamage: Medium\nHitchance: Medium", true);
                 Klasser.WriteLine("\nFighter 3: \nHp: Low\nDamage: High\nHitchance: High\n", true);
-                Klasser.Write("Choose fighter:", true);
+                Klasser.Write("Choose fighter: ", true);
             }
 
-            return chooseFighter(fiende);
+            return chooseFighter(player);
         }
 
-        public Fighters chooseFighter(bool fiende)
+        public Fighters chooseFighter(bool player)
         {
-            string[] answears = { "1", "2", "3", "fighter 1", "fighter 2", "fighter 3" };
+            string[] answears = { "1", "2", "3", "fighter 1", "fighter1", "fighter 2", "fighter2", "fighter 3", "fighter3" };
             string choice;
             Fighters fighter = new Fighters();
 
-            if (fiende == false)
+            if (player == false)
             {
                 choice = Klasser.ChoiseCorrect(answears);
             }
@@ -50,17 +49,17 @@ namespace FightSim
                 choice = RandomiseChoise();
             }
 
-            if (choice == "fighter 1" || choice == "1")
+            if (choice == "fighter 1" || choice == "fighter1" || choice == "1")
             {
                 fighter = new Fighter_1();
             }
 
-            if (choice == "fighter 2" || choice == "2")
+            if (choice == "fighter 2" || choice == "fighter2" || choice == "2")
             {
                 fighter = new Fighter_2();
             }
 
-            if (choice == "fighter 3" || choice == "3")
+            if (choice == "fighter 3" || choice == "fighter3" || choice == "3")
             {
                 fighter = new Fighter_3();
             }
@@ -127,8 +126,6 @@ namespace FightSim
             {
                 playerWon = false;
             }
-
-
             End(playerWon);
         }
 
@@ -137,7 +134,7 @@ namespace FightSim
             if (isPlayer == true)
             {
                 Console.Clear();
-                Klasser.WriteLine("Name: " + player.PrintNameOrHealth(true) + "\nHp: " + player.PrintNameOrHealth(false) + "\nWhat do you want to do? \n1. Fight\n2. Check Status", true);
+                Klasser.WriteLine("Name: " + player.PrintNameOrHealth(true) + "\nHp: " + player.PrintNameOrHealth(false) + "\nEnemy Hp: " + enemy.Hp + "\n\nWhat do you want to do? \n1. Fight\n2. Check Status", true);
                 string[] answears = { "1", "2", "fight", "check staus", "checkstatus" };
 
                 string answear = Klasser.ChoiseCorrect(answears);
@@ -163,6 +160,7 @@ namespace FightSim
 
         public void DealDamage(Fighters player, Fighters enemy, bool playerBool)
         {
+            Console.Clear();
             string[] attacks = { "hook", "straight", "death stare", "roundhouse kick", "DDT" };
             string[] hit = { "stomach", "knee", "shoulder", "liver", "Hand", "feet" };
             bool playerHit = player.HitOrMiss();
@@ -181,35 +179,35 @@ namespace FightSim
 
             if (playerHit == false && playerBool == true)
             {
-                Klasser.WriteLine(player.Name + " missed his attack", false);
+                Klasser.WriteLine(player.Name + " missed his attack\n\n(*Enter *)", false);
             }
 
             if (enemyHit == true && playerBool == false)
             {
                 int damage = enemy.Damage;
 
-                Klasser.WriteLine(enemy.Name + " hit a " + Klasser.RandString(attacks) + " on " + player.Name + "'s " + Klasser.RandString(hit) + " and dealt " + damage + " damage" + "\n\n(*Enter*)", false);
+                Klasser.WriteLine(enemy.Name + " hit a " + Klasser.RandString(attacks) + " on " + player.Name + "'s " + Klasser.RandString(hit) + " and dealt " + damage + " damage\n\n(*Enter*)", false);
 
                 player.Hp -= damage;
             }
 
             if (enemyHit == false && playerBool == false)
             {
-                Klasser.WriteLine(enemy.Name + " missed the attack", false);
+                Klasser.WriteLine(enemy.Name + " missed the attack\n\n(*Enter *)", false);
             }
-
-            Console.Clear();
         }
 
         public void End(bool playerWon)
         {
+            Console.Clear();
+
             if (playerWon == true)
             {
-                Klasser.WriteLine("Better luck next time!", true);
+                Klasser.WriteLine("Perfekt round!", true);
             }
             else
             {
-                Klasser.WriteLine("Perfekt round!", true);
+                Klasser.WriteLine("Better luck next time!", true);
             }
 
             Klasser.WriteLine("Would you like to play again? \n\n (Yes/No)", true);

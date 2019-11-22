@@ -11,7 +11,9 @@ namespace FightSim
             Fighters enemy = m.PresentFighterKlass(true); // The game randomises a fighter
 
             m.NameYourFighter(player);
-            player.PrintStats();            
+            player.PrintStats();
+            Console.Clear();
+            Klasser.WriteLine("You'r oponent is ...\n\n(*Enter*)", false);
             enemy.PrintStats();
             
             m.AnitiateFight(player, enemy);
