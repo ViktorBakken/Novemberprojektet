@@ -18,12 +18,12 @@ namespace FightSim
         protected int hitChance; //This will be the official hit chance charakter will get 
         private bool defeated; //A bool to se if the character is defeated;
 
-        public Fighters()
+        public Fighters() //When this class is instantiated a name will be randomed
         {
             name = Klasser.RandString(enemyNames);
-        } //
+        } //When this class is instantiated a name will be randomed
 
-        public int Hp
+        public int Hp //A variable to see the health points or change the health points
         {
             get
             {
@@ -43,7 +43,7 @@ namespace FightSim
             }
         } //A variable to see the health points or change the health points
 
-        public int Damage
+        public int Damage //A variable to see the damage
         {
             get
             {
@@ -53,7 +53,7 @@ namespace FightSim
             }
         } //A variable to see the damage
 
-        public string Name
+        public string Name //A variable to see the character name or change it
         {
             get
             {
@@ -69,7 +69,7 @@ namespace FightSim
             }
         } //A variable to see the character name or change it
 
-        public bool IsDefeated
+        public bool IsDefeated //A variable to see the if the character is defeated
         {
             get
             {
@@ -81,7 +81,7 @@ namespace FightSim
             }
         } //A variable to see the if the character is defeated
 
-        public bool HitOrMiss()
+        public bool HitOrMiss() //This block of code checks if the character missesor hit a attack
         {
             bool hit = false;
             int hitValueLimiter = Klasser.RandInt(10, 20);
@@ -97,31 +97,12 @@ namespace FightSim
             return hit;
         } //This block of code checks if the character missesor hit a attack
 
-
-
-        public string PrintNameOrHealth(bool Name)
-        {
-            string retVal;
-
-            if (Name == true)
-            {
-                retVal = name;
-            }
-            else
-            {
-                retVal = hp.ToString();
-            }
-
-            return retVal;
-
-        }
-
-        public void PrintStats()
+        public void PrintStats() //Prints the stats 
         {
             Console.Clear();
             Klasser.WriteLine("Name: " + name + "\nHP: " + hp + "\nHit Chance: " + hitChance + "\nMax Damage: " + maxDamage + "\nMin Damage: " + minDamage + "\n \n(*Enter*)\n", false);
 
             return;
-        }
+        } //Prints the stats 
     }
 }

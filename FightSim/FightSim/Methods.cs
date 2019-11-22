@@ -7,8 +7,8 @@ namespace FightSim
 {
     class Methods
     {
-        //Begining
-        public void NameYourFighter(Fighters fighter)
+        //Preperations
+        public void NameYourFighter(Fighters fighter) //This code block is for allowing the player rename their character
         {
             Console.Clear();
             Klasser.WriteLine("Name your fighter!", true);
@@ -16,9 +16,9 @@ namespace FightSim
             string newName = Console.ReadLine();
 
             fighter.Name = newName;
-        }
+        } //This code block is for allowing the player rename their character
 
-        public Fighters PresentFighterKlass(bool player)
+        public Fighters PresentFighterKlass(bool player) //This code block presents the three different fighter klass  
         {
             if (player == false)
             {
@@ -32,9 +32,9 @@ namespace FightSim
             }
 
             return chooseFighter(player);
-        }
+        } //This code block presents the three different fighter klass  
 
-        public Fighters chooseFighter(bool player)
+        public Fighters chooseFighter(bool player) //This code block lets the player choose one of the three fighterklasses
         {
             string[] answears = { "1", "2", "3", "fighter 1", "fighter1", "fighter 2", "fighter2", "fighter 3", "fighter3" };
             string choice;
@@ -65,18 +65,18 @@ namespace FightSim
             }
 
             return fighter;
-        }
+        } //This code block lets the player choose one of the three fighterklasses
 
-        public string RandomiseChoise()
+        public string RandomiseChoise() //Randomise a number between 1-3 and convert it to a string
         {
             int i = Klasser.RandInt(1, 3);
 
             string rand = "" + i;
 
             return rand;
-        }
+        } //Randomise a number between 1-3 and convert it to a string
 
-        public void AnitiateFight(Fighters player, Fighters enemy)
+        public void AnitiateFight(Fighters player, Fighters enemy) //This code block is for Anitiating the fight by randomise if the playeer or the enemy start the fight 
         {
             int whoWillStart;
             bool playerStartFight;
@@ -98,14 +98,14 @@ namespace FightSim
             }
 
             Fight(playerStartFight, player, enemy);
-        }
+        } //This code block is for Anitiating the fight by randomise if the playeer or the enemy start the fight 
 
 
 
         //Fighting
-        public void Fight(bool playerStartFight, Fighters player, Fighters enemy)
+        public void Fight(bool playerStartFight, Fighters player, Fighters enemy)  //This is the processor of the fight. It says which characters turn it is and after the fight the block says who won the fight
         {
-            while (player.IsDefeated == false && enemy.IsDefeated == false)
+            while (player.IsDefeated == false && enemy.IsDefeated == false) //The fight will continue untill one character faint
             {
                 if (playerStartFight == true)
                 {
@@ -115,6 +115,9 @@ namespace FightSim
                 FightMenues(player, enemy, false);
                 playerStartFight = true;
             }
+
+
+            //After the fight
 
             bool playerWon = false;
 
@@ -126,18 +129,19 @@ namespace FightSim
             {
                 playerWon = false;
             }
+            
             End(playerWon);
-        }
+        } //This is the processor of the fight. It says which characters turn it is and after the fight the block says who won the fight
 
-        public void FightMenues(Fighters player, Fighters enemy, bool isPlayer)
+        public void FightMenues(Fighters player, Fighters enemy, bool isPlayer) //For the player this code block lets the player choose if they want to check their stats or attack
         {
             if (isPlayer == true)
             {
                 Console.Clear();
-                Klasser.WriteLine("Name: " + player.PrintNameOrHealth(true) + "\nHp: " + player.PrintNameOrHealth(false) + "\nEnemy Hp: " + enemy.Hp + "\n\nWhat do you want to do? \n1. Fight\n2. Check Status", true);
+                Klasser.WriteLine("Name: " + player.Name + "\nHp: " + player.Name + "\nEnemy Hp: " + enemy.Hp + "\n\nWhat do you want to do? \n1. Fight\n2. Check Status", true);
                 string[] answears = { "1", "2", "fight", "check staus", "checkstatus" };
 
-                string answear = Klasser.ChoiseCorrect(answears);
+                string answear = Klasser.ChoiseCorrect(answears); 
 
                 Console.Clear();
 
@@ -156,9 +160,9 @@ namespace FightSim
             {
                 DealDamage(player, enemy, false);
             }
-        }
+        } //For the player this code block lets the player choose if they want to check their stats or attack
 
-        public void DealDamage(Fighters player, Fighters enemy, bool playerBool)
+        public void DealDamage(Fighters player, Fighters enemy, bool playerBool) //This code block is for dealing dammage between the player and the enemy. It randomise if the attack will hit or not. If it hit it randomises what kind of attack it was and where it hit.
         {
             Console.Clear();
             string[] attacks = { "hook", "straight", "death stare", "roundhouse kick", "DDT" };
@@ -195,9 +199,9 @@ namespace FightSim
             {
                 Klasser.WriteLine(enemy.Name + " missed the attack\n\n(*Enter *)", false);
             }
-        }
+        } //This code block is for dealing dammage between the player and the enemy. It randomise if the attack will hit or not. If it hit it randomises what kind of attack it was and where it hit.
 
-        public void End(bool playerWon)
+        public void End(bool playerWon) //This code block resolvs the "after fight" and let the player choose if they want to restart the game
         {
             Console.Clear();
 
@@ -220,6 +224,6 @@ namespace FightSim
             {
                 Klasser.restartGame = true;
             }
-        }
+        } //This code block resolvs the "after fight" and let the player choose if they want to restart the game
     }
 }

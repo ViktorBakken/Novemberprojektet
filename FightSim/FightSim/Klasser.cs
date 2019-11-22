@@ -9,7 +9,7 @@ class Klasser
 
     public static bool restartGame = false; // Bool that can be used when restarting the game
 
-    public static int IsInt(string intake)
+    public static int IsInt(string intake) // check if the intake is an int
     {
         intake = intake.Trim();
         int amount;
@@ -25,7 +25,7 @@ class Klasser
         return amount;
     } // check if the intake is an int
 
-    public static string ChoiseCorrect(string[] correctAnswears)
+    public static string ChoiseCorrect(string[] correctAnswears) //Forces the user to write one of the correct answears
     {
         string answear = "";
         bool wrongInput = true;
@@ -51,9 +51,9 @@ class Klasser
         }
 
         return answear;
-    } // forces the user to write one of the correct answears
+    } //Forces the user to write one of the correct answears
 
-    public static string ChoiseIsNot(string[] wrongAnswears, string answear)
+    public static string ChoiseIsNot(string[] wrongAnswears, string answear) //Forces the user to not write one of the wrong answears
     {
         bool whileAnswearWrong = true;
 
@@ -86,10 +86,10 @@ class Klasser
             }
         }
         return answear;
-    } // forces the user to not write one of the wrong answears
+    } //Forces the user to not write one of the wrong answears
 
 
-    public static void WriteLine(string text, bool ignoreReadLine)
+    public static void WriteLine(string text, bool ignoreReadLine) //Skriver ut en string
     {
         Console.WriteLine(text);
 
@@ -100,7 +100,7 @@ class Klasser
     } //Skriver ut en string
 
 
-    public static void Write(string text, bool ignoreReadLine)
+    public static void Write(string text, bool ignoreReadLine) //Writes out the text with "Console.Write();" and also it can ignore "ReadLine()"
     {
         Console.Write(text);
 
@@ -108,26 +108,26 @@ class Klasser
         {
             Console.ReadLine();
         }
-    } //Skriver ut med "Console.Write();" och denna metod ger chansen att ignorera "ReadLine"
+    } //Writes out the text with "Console.Write();" and also it can ignore "ReadLine()"
 
 
-    public static int RandInt(int num1, int num2)
+    public static int RandInt(int num1, int num2) //Randomises an int
     {
         int retVal; // retVal = return value
 
         retVal = randGen.Next(num1, num2 + 1);
 
         return retVal;
-    }//Slumpar ett tal mellan två ints
+    }//Randomises an int
 
 
-    public static string RandString(string[] total)
+    public static string RandString(string[] total) //Randomises an string from an array
     {
         int retVal; //retVal = return value
 
         retVal = randGen.Next(0, total.Length);
 
         return total[retVal];
-    } //Slumpar en string från en string array
+    } //Randomises an string from an array
 }
 
